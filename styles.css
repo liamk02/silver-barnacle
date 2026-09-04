@@ -1,0 +1,13 @@
+/* Reset + base styles — will build out per section as content comes in */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #fff;
+}
