@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://liamk02.github.io/silver-barnacle/
+Sitemap: https://kvarzellconsulting.com/
