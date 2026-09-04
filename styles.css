@@ -216,6 +216,16 @@ a {
   text-decoration: underline;
 }
 
+.card-link-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.card-link-muted {
+  color: var(--text-muted);
+}
+
 /* ---------- Contact ---------- */
 .contact-links {
   display: flex;
