@@ -162,6 +162,89 @@ a {
   font-size: 0.9rem;
 }
 
+/* ---------- Writing list ---------- */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.post-list-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+}
+
+.post-list-item:hover {
+  border-color: var(--accent);
+}
+
+.post-list-item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.post-list-item p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 65ch;
+}
+
+.post-list-date {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Article (posts/*.html) ---------- */
+.post-back {
+  display: inline-block;
+  margin-top: 32px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.post-back:hover {
+  color: var(--accent);
+}
+
+.post h1 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin: 12px 0 10px;
+  text-wrap: balance;
+}
+
+.post-byline {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 40px;
+}
+
+.post-body {
+  max-width: 68ch;
+}
+
+.post-body h2 {
+  font-size: 1.2rem;
+  margin: 40px 0 14px;
+}
+
+.post-body p {
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.post-body strong {
+  color: var(--text);
+}
+
 /* ---------- Cards ---------- */
 .card-grid {
   display: grid;

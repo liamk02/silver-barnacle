@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three AI Tools, Three Production Bugs — Liam Kvarzell</title>
+  <meta name="description" content="What actually happened building three AI tools in a week — the memory limits, billing throttles, and a platform routing bug, not just the parts that worked.">
+  <link rel="canonical" href="https://kvarzellconsulting.com/posts/three-ai-tools-three-production-bugs.html">
+
+  <link rel="icon" href="../assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/favicon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kvarzellconsulting.com/posts/three-ai-tools-three-production-bugs.html">
+  <meta property="og:title" content="Three AI Tools, Three Production Bugs">
+  <meta property="og:description" content="What actually happened building three AI tools in a week — the memory limits, billing throttles, and a platform routing bug, not just the parts that worked.">
+  <meta property="og:image" content="https://kvarzellconsulting.com/assets/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Three AI Tools, Three Production Bugs">
+  <meta name="twitter:description" content="What actually happened building three AI tools in a week — the memory limits, billing throttles, and a platform routing bug, not just the parts that worked.">
+  <meta name="twitter:image" content="https://kvarzellconsulting.com/assets/og-image.png">
+
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="../index.html#top" class="brand">Liam Kvarzell</a>
+      <nav>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap post">
+      <a href="../index.html#writing" class="post-back">&larr; Back to writing</a>
+
+      <p class="eyebrow">Writing</p>
+      <h1>Three AI Tools, Three Production Bugs</h1>
+      <p class="post-byline">Liam Kvarzell &middot; September 2026</p>
+
+      <div class="post-body">
+        <p>
+          I wanted to actually learn how to build with AI instead of just reading
+          about it. Not a tutorial. Not a throwaway example. Real projects, deployed
+          publicly, with my name on them.
+        </p>
+        <p>
+          I built three tools in about a week, working with Claude the whole way
+          through: planning, writing code, and just as importantly, debugging the
+          parts that broke. Here's what actually happened, including the parts that
+          didn't go smoothly.
+        </p>
+
+        <h2>The three tools</h2>
+        <p>
+          <strong>A document Q&amp;A tool.</strong> Ask questions about your own
+          documents, get answers grounded in them with citations. Local embeddings, a
+          small vector search I could read top to bottom, and Claude generating the
+          final answer.
+        </p>
+        <p>
+          <strong>A lead-triage API.</strong> Reads an inbound contact-form message
+          and classifies it: category, urgency, a one-line summary, before it hits an
+          inbox. Different core technique from the first tool: structured extraction
+          instead of retrieval.
+        </p>
+        <p>
+          <strong>A content repurposing tool.</strong> Paste in a blog post or
+          transcript, get back a summary, three distinct social posts, and an email
+          blurb. The first one that generates new content instead of reading or
+          classifying existing content.
+        </p>
+        <p>
+          Three tools, three different core AI techniques. That was deliberate: I
+          didn't want a portfolio that was the same trick three times.
+        </p>
+
+        <h2>What actually separates a demo from something real</h2>
+        <p>
+          Claude answered questions correctly, classified messages sensibly, wrote
+          reasonable social copy. That part is close to solved technology at this
+          point.
+        </p>
+        <p>
+          What actually separates a working demo from something people can depend on
+          is everything around the model: infrastructure that holds up under real
+          constraints, catching problems before they get expensive, and knowing the
+          difference between "my code is wrong" and "something else in the system is
+          doing something unexpected," then proving which one it actually is instead
+          of guessing.
+        </p>
+        <p>
+          That's the part that doesn't show up in a tutorial. It's also the part
+          that actually matters once a client is depending on what you built.
+        </p>
+
+        <h2>Where this leaves me</h2>
+        <p>
+          Three tools, all live, all still running. A portfolio site with a real
+          domain. And a solid answer to the question every potential client is going
+          to ask eventually: have you actually shipped anything real?
+        </p>
+        <p>
+          If you're working on something similar, or just curious how any of this
+          works, <a href="../index.html#contact">get in touch</a>, that's what the
+          form is for.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>&copy; <span id="year"></span> Liam Kvarzell.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
