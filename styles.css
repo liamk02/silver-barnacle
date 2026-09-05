@@ -124,6 +124,13 @@ a {
   font-weight: 600;
   font-size: 0.95rem;
   transition: opacity 0.15s ease;
+  /* Resets for when .btn is used on a real <button> instead of an <a> -
+     buttons come with a browser-default white background and their own
+     font, which silently broke .btn-ghost's light-on-dark text before. */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .btn-primary {
@@ -392,4 +399,12 @@ a {
   padding: 32px 24px 48px;
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.footer-link {
+  color: var(--text-muted);
+}
+
+.footer-link:hover {
+  color: var(--accent);
 }

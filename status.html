@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Status — Liam Kvarzell</title>
+  <meta name="description" content="Live status of the AI tools built and deployed as part of this portfolio.">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .status-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .status-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      flex-wrap: wrap;
+    }
+    .status-main h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .status-main a {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    .status-main a:hover {
+      color: var(--accent);
+    }
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      flex: none;
+      transition: background 0.2s ease;
+    }
+    .status-dot.checking {
+      background: #f5b942;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .status-dot.up { background: #4ade80; }
+    .status-dot.down { background: #ff5a5a; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .status-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .status-note {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    #refresh-btn {
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="index.html#top" class="brand">Liam Kvarzell</a>
+      <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#writing">Build Log</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap section">
+    <p class="eyebrow">Status</p>
+    <h1 style="font-size: 1.6rem; margin-bottom: 10px;">System Status</h1>
+    <p class="section-note" style="margin-bottom: 0;">
+      Live checks against each deployed tool's own health endpoint — run right now, in your browser.
+    </p>
+
+    <div class="status-list" id="status-list">
+      <!-- Cards injected by script below -->
+    </div>
+
+    <button id="refresh-btn" class="btn btn-ghost">Recheck now</button>
+
+    <p class="status-note">
+      All three run on Render's free tier, which sleeps after inactivity — a "Waking up"
+      result usually resolves within 50 seconds as the instance spins back up.
+    </p>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>&copy; <span id="year"></span> Liam Kvarzell.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const SERVICES = [
+      {
+        name: "Document Q&A Tool",
+        url: "https://kvarzellconsulting.onrender.com",
+      },
+      {
+        name: "Lead Triage API",
+        url: "https://lead-triage-zeo2.onrender.com",
+      },
+      {
+        name: "Content Repurposer",
+        url: "https://content-repurposer-4sbx.onrender.com",
+      },
+    ];
+
+    const CHECK_TIMEOUT_MS = 60000; // free-tier cold start can take ~50s
+
+    const listEl = document.getElementById("status-list");
+    const refreshBtn = document.getElementById("refresh-btn");
+
+    function buildCard(service) {
+      const card = document.createElement("div");
+      card.className = "status-card";
+      card.innerHTML = `
+        <div class="status-main">
+          <h3>${service.name}</h3>
+          <a href="${service.url}" target="_blank" rel="noopener noreferrer">${service.url.replace("https://", "")}</a>
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot checking"></span>
+          <span class="status-text">Checking…</span>
+        </div>
+      `;
+      return card;
+    }
+
+    async function checkService(service, card) {
+      const dot = card.querySelector(".status-dot");
+      const textEl = card.querySelector(".status-text");
+      dot.className = "status-dot checking";
+      textEl.innerHTML = "Checking…";
+
+      const start = performance.now();
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), CHECK_TIMEOUT_MS);
+
+      try {
+        const res = await fetch(service.url + "/api/health", { signal: controller.signal });
+        const elapsed = Math.round(performance.now() - start);
+        if (res.ok) {
+          dot.className = "status-dot up";
+          textEl.innerHTML = `Operational <span class="status-meta">(${elapsed} ms)</span>`;
+        } else {
+          dot.className = "status-dot down";
+          textEl.innerHTML = `Unreachable <span class="status-meta">(HTTP ${res.status})</span>`;
+        }
+      } catch (err) {
+        dot.className = "status-dot down";
+        textEl.innerHTML = "Unreachable";
+      } finally {
+        clearTimeout(timeout);
+      }
+    }
+
+    function runAllChecks() {
+      const cards = Array.from(listEl.children);
+      SERVICES.forEach((service, i) => checkService(service, cards[i]));
+    }
+
+    SERVICES.forEach((service) => listEl.appendChild(buildCard(service)));
+    runAllChecks();
+    refreshBtn.addEventListener("click", runAllChecks);
+  </script>
+</body>
+</html>
