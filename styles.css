@@ -304,6 +304,56 @@ a {
   max-width: 65ch;
 }
 
+.section p + p {
+  margin-top: 16px;
+}
+
+/* ---------- About ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+
+.fact-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 50%), var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 0;
+}
+
+.fact-row + .fact-row {
+  border-top: 1px solid var(--border);
+}
+
+.fact-row dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.fact-row dd {
+  font-size: 0.92rem;
+  margin: 0;
+}
+
 .section-note {
   font-style: italic;
   margin-bottom: 24px;
