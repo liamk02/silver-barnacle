@@ -25,6 +25,8 @@
   <meta name="twitter:description" content="Aspiring AI consultant helping businesses implement AI — real projects, built and shipped in public while learning.">
   <meta name="twitter:image" content="https://kvarzellconsulting.com/assets/og-image.png">
 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -43,138 +45,158 @@
 
   <main id="top">
 
-    <section class="hero wrap">
-      <p class="eyebrow">AI Consultant in training</p>
-      <h1>Helping businesses put AI to work — for real.</h1>
-      <p class="hero-sub">
-        I'm 23 and learning how to implement AI inside real businesses, with the goal
-        of launching my own consulting firm doing exactly that. Eager to take on new
-        projects and stack up knowledge along the way.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="#work" class="btn btn-ghost">See my work</a>
-      </div>
-    </section>
-
-    <section id="about" class="wrap section">
-      <h2>About</h2>
-      <p>
-        I'm Liam — 23 years old and focused on one thing: figuring out how AI actually
-        creates value inside a business, not just in theory. Right now that means
-        learning fast, testing tools on real problems, and building the kind of
-        hands-on experience that a client can trust. Long-term, the goal is my own
-        AI consulting practice, helping businesses adopt AI that actually works.
-      </p>
-    </section>
-
-    <section id="work" class="wrap section">
-      <h2>Work</h2>
-      <p class="section-note">
-        Three projects, three different techniques: retrieval, classification, generation.
-      </p>
-      <div class="card-grid">
-        <article class="card">
-          <span class="badge badge-live">Live project</span>
-          <h3>Document Q&amp;A Tool</h3>
-          <p>A retrieval-augmented Q&amp;A tool: ask questions about your own documents and
-             get answers grounded in them, with citations. Local embeddings, conversation
-             memory, sentence-aware chunking, plus a CLI and a web interface.</p>
-          <div class="card-link-row">
-            <a href="https://kvarzellconsulting.onrender.com" class="card-link" target="_blank" rel="noopener noreferrer">
-              Try it live &rarr;
-            </a>
-            <a href="https://github.com/liamk02/doc-qa-tool" class="card-link card-link-muted" target="_blank" rel="noopener noreferrer">
-              View source &rarr;
-            </a>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">AI Consultant in training</p>
+          <h1>Helping businesses put AI to work — for real.</h1>
+          <p class="hero-sub">
+            I'm 23 and learning how to implement AI inside real businesses, with the goal
+            of launching my own consulting firm doing exactly that. Eager to take on new
+            projects and stack up knowledge along the way.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Get in touch</a>
+            <a href="#work" class="btn btn-ghost">See my work</a>
           </div>
-        </article>
-        <article class="card">
-          <span class="badge badge-live">Live project</span>
-          <h3>Lead Triage API</h3>
-          <p>A small Claude-powered service that reads an inbound message and classifies it
-             — category, urgency, one-line summary — before it hits an inbox. Structured
-             extraction rather than search: it's what's silently tagging the message you
-             just sent through the form below.</p>
-          <div class="card-link-row">
-            <a href="https://github.com/liamk02/lead-triage" class="card-link" target="_blank" rel="noopener noreferrer">
-              View source &rarr;
-            </a>
-          </div>
-        </article>
-        <article class="card">
-          <span class="badge badge-live">Live project</span>
-          <h3>Content Repurposer</h3>
-          <p>Paste in a blog post, transcript, or article — get back a summary, 3 distinct
-             social posts, and an email blurb, one Claude call. First project in the set
-             that generates new content instead of reading or classifying it.</p>
-          <div class="card-link-row">
-            <a href="https://content-repurposer-4sbx.onrender.com" class="card-link" target="_blank" rel="noopener noreferrer">
-              Try it live &rarr;
-            </a>
-            <a href="https://github.com/liamk02/content-repurposer" class="card-link card-link-muted" target="_blank" rel="noopener noreferrer">
-              View source &rarr;
-            </a>
-          </div>
-        </article>
+        </div>
+
+        <div class="hero-status" id="hero-status">
+          <p class="hero-status-title">Live systems</p>
+          <div id="hero-status-list"><!-- rows injected by script.js --></div>
+          <a href="status.html" class="hero-status-link">Full status page &rarr;</a>
+        </div>
       </div>
     </section>
 
-    <section id="writing" class="wrap section">
-      <h2>Build Log</h2>
-      <p class="section-note">What actually goes into building and shipping this stuff, one project at a time.</p>
-      <div class="post-list">
-        <a href="posts/three-ai-tools-three-production-bugs.html" class="post-list-item">
-          <h3>Three AI Tools, Three Production Bugs</h3>
-          <p>What separates a working demo from something people can depend on, and the
-             real debugging that went into three shipped AI tools.</p>
-          <span class="post-list-date">September 2026</span>
-        </a>
+    <section id="about" class="section">
+      <div class="wrap">
+        <h2>About</h2>
+        <p>
+          I'm Liam — 23 years old and focused on one thing: figuring out how AI actually
+          creates value inside a business, not just in theory. Right now that means
+          learning fast, testing tools on real problems, and building the kind of
+          hands-on experience that a client can trust. Long-term, the goal is my own
+          AI consulting practice, helping businesses adopt AI that actually works.
+        </p>
       </div>
     </section>
 
-    <section id="contact" class="wrap section">
-      <h2>Contact</h2>
-      <p>Open to conversations, projects, and opportunities to learn.</p>
-
-      <div id="contact-success" class="form-success" role="status" hidden>
-        Thanks — your message is on its way. I'll get back to you soon.
+    <section id="work" class="section">
+      <div class="wrap">
+        <h2>Work</h2>
+        <p class="section-note">
+          Three projects, three different techniques: retrieval, classification, generation.
+        </p>
+        <div class="card-grid">
+          <article class="card">
+            <span class="badge badge-live">Live project</span>
+            <h3>Document Q&amp;A Tool</h3>
+            <p>A retrieval-augmented Q&amp;A tool: ask questions about your own documents and
+               get answers grounded in them, with citations. Local embeddings, conversation
+               memory, sentence-aware chunking, plus a CLI and a web interface.</p>
+            <div class="card-link-row">
+              <a href="https://kvarzellconsulting.onrender.com" class="card-link" target="_blank" rel="noopener noreferrer">
+                Try it live &rarr;
+              </a>
+              <a href="https://github.com/liamk02/doc-qa-tool" class="card-link card-link-muted" target="_blank" rel="noopener noreferrer">
+                View source &rarr;
+              </a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="badge badge-live">Live project</span>
+            <h3>Lead Triage API</h3>
+            <p>A small Claude-powered service that reads an inbound message and classifies it
+               — category, urgency, one-line summary — before it hits an inbox. Structured
+               extraction rather than search: it's what's silently tagging the message you
+               just sent through the form below.</p>
+            <div class="card-link-row">
+              <a href="https://github.com/liamk02/lead-triage" class="card-link" target="_blank" rel="noopener noreferrer">
+                View source &rarr;
+              </a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="badge badge-live">Live project</span>
+            <h3>Content Repurposer</h3>
+            <p>Paste in a blog post, transcript, or article — get back a summary, 3 distinct
+               social posts, and an email blurb, one Claude call. First project in the set
+               that generates new content instead of reading or classifying it.</p>
+            <div class="card-link-row">
+              <a href="https://content-repurposer-4sbx.onrender.com" class="card-link" target="_blank" rel="noopener noreferrer">
+                Try it live &rarr;
+              </a>
+              <a href="https://github.com/liamk02/content-repurposer" class="card-link card-link-muted" target="_blank" rel="noopener noreferrer">
+                View source &rarr;
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
-      <div id="contact-error" class="form-error" role="alert" hidden></div>
+    </section>
 
-      <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwlkqqwp" method="POST">
-        <input type="hidden" name="_subject" value="New message from portfolio site">
+    <section id="writing" class="section">
+      <div class="wrap">
+        <h2>Build Log</h2>
+        <p class="section-note">What actually goes into building and shipping this stuff, one project at a time.</p>
+        <div class="post-list">
+          <a href="posts/three-ai-tools-three-production-bugs.html" class="post-list-item">
+            <h3>Three AI Tools, Three Production Bugs</h3>
+            <p>What separates a working demo from something people can depend on, and the
+               real debugging that went into three shipped AI tools.</p>
+            <span class="post-list-date">September 2026</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-ghost">Send message</button>
-      </form>
+    <section id="contact" class="section">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p>Open to conversations, projects, and opportunities to learn.</p>
 
-      <p class="contact-or">Or reach me directly:</p>
-      <div class="contact-links">
-        <a href="mailto:kvarzellconsultingab@gmail.com" class="btn btn-ghost">
-          kvarzellconsultingab@gmail.com
-        </a>
-        <a href="https://www.linkedin.com/in/liam-kvarzell-8ba2a138b/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </a>
+        <div id="contact-success" class="form-success" role="status" hidden>
+          Thanks — your message is on its way. I'll get back to you soon.
+        </div>
+        <div id="contact-error" class="form-error" role="alert" hidden></div>
+
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwlkqqwp" method="POST">
+          <input type="hidden" name="_subject" value="New message from portfolio site">
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-ghost">Send message</button>
+        </form>
+
+        <p class="contact-or">Or reach me directly:</p>
+        <div class="contact-links">
+          <a href="mailto:kvarzellconsultingab@gmail.com" class="btn btn-ghost">
+            kvarzellconsultingab@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/liam-kvarzell-8ba2a138b/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer wrap">
-    <p>&copy; <span id="year"></span> Liam Kvarzell. &middot; <a href="status.html" class="footer-link">System status</a></p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year"></span> Liam Kvarzell. &middot; <a href="status.html" class="footer-link">System status</a></p>
+    </div>
   </footer>
 
   <script src="script.js"></script>

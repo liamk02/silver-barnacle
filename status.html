@@ -6,6 +6,8 @@
   <title>System Status — Liam Kvarzell</title>
   <meta name="description" content="Live status of the AI tools built and deployed as part of this portfolio.">
   <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="styles.css">
   <style>
     .status-list {
@@ -19,11 +21,21 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      background: var(--bg-elevated);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 40%), var(--bg-elevated);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px 20px;
       flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .status-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .status-card { transition: none; }
+      .status-card:hover { transform: none; }
     }
     .status-main h3 {
       font-size: 1rem;
@@ -92,27 +104,31 @@
     </div>
   </header>
 
-  <main class="wrap section">
-    <p class="eyebrow">Status</p>
-    <h1 style="font-size: 1.6rem; margin-bottom: 10px;">System Status</h1>
-    <p class="section-note" style="margin-bottom: 0;">
-      Live checks against each deployed tool's own health endpoint — run right now, in your browser.
-    </p>
+  <main class="section">
+    <div class="wrap">
+      <p class="eyebrow">Status</p>
+      <h1 style="font-size: 1.6rem; margin-bottom: 10px;">System Status</h1>
+      <p class="section-note" style="margin-bottom: 0;">
+        Live checks against each deployed tool's own health endpoint — run right now, in your browser.
+      </p>
 
-    <div class="status-list" id="status-list">
-      <!-- Cards injected by script below -->
+      <div class="status-list" id="status-list">
+        <!-- Cards injected by script below -->
+      </div>
+
+      <button id="refresh-btn" class="btn btn-ghost">Recheck now</button>
+
+      <p class="status-note">
+        All three run on Render's free tier, which sleeps after inactivity — a "Waking up"
+        result usually resolves within 50 seconds as the instance spins back up.
+      </p>
     </div>
-
-    <button id="refresh-btn" class="btn btn-ghost">Recheck now</button>
-
-    <p class="status-note">
-      All three run on Render's free tier, which sleeps after inactivity — a "Waking up"
-      result usually resolves within 50 seconds as the instance spins back up.
-    </p>
   </main>
 
-  <footer class="site-footer wrap">
-    <p>&copy; <span id="year"></span> Liam Kvarzell.</p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year"></span> Liam Kvarzell.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>

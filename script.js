@@ -1,6 +1,60 @@
 // Keep the footer year current without hardcoding it.
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// Compact live-status widget in the hero (index.html only - guarded below).
+// Same real health checks as status.html, just name + dot, no timing detail.
+(function () {
+  const list = document.getElementById("hero-status-list");
+  if (!list) return;
+
+  const SERVICES = [
+    { name: "Document Q&A Tool", url: "https://kvarzellconsulting.onrender.com" },
+    { name: "Lead Triage API", url: "https://lead-triage-zeo2.onrender.com" },
+    { name: "Content Repurposer", url: "https://content-repurposer-4sbx.onrender.com" },
+  ];
+  const TIMEOUT_MS = 15000; // shorter than the full status page - this is a glance, not a deep check
+
+  SERVICES.forEach(function (service) {
+    const row = document.createElement("div");
+    row.className = "hero-status-row";
+    row.innerHTML = '<span class="hero-status-dot checking"></span><span>' + service.name + "</span>";
+    list.appendChild(row);
+
+    const dot = row.querySelector(".hero-status-dot");
+    const controller = new AbortController();
+    const timeout = setTimeout(function () { controller.abort(); }, TIMEOUT_MS);
+
+    fetch(service.url + "/api/health", { signal: controller.signal })
+      .then(function (res) { dot.className = "hero-status-dot " + (res.ok ? "up" : "down"); })
+      .catch(function () { dot.className = "hero-status-dot down"; })
+      .finally(function () { clearTimeout(timeout); });
+  });
+})();
+
+// Fade/slide each section in as it enters the viewport. Applied at the
+// section level (not per-card) to keep the motion calm rather than a busy
+// staggered cascade. Anything already in view on load reveals immediately -
+// IntersectionObserver checks intersection as soon as observe() runs, so the
+// page never depends on scrolling to show its own content.
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  const targets = document.querySelectorAll(".section");
+  if (!targets.length) return;
+
+  targets.forEach(function (el) { el.classList.add("reveal"); });
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+  targets.forEach(function (el) { observer.observe(el); });
+})();
+
 // Submit the contact form via fetch instead of a normal page navigation -
 // Formspree's custom-redirect ("_next") feature is paid-plan only, so a
 // plain <form> submit would land the visitor on Formspree's own generic
